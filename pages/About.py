@@ -1,4 +1,4 @@
 import streamlit as st
 
 st.title("About Alex")
-st.write("To be updated")
+st.write("I am currently teaching English at Gyeongnam Automobile High School, where I focus on empowering students to become confident, autonomous learners through digital literacy and engaging, student-centered approaches. I recently completed my Master’s degree at Gyeongsang National University (GNU), specializing in corpus-based research that analyzed differences between spoken and written English. My research focused on Register-Specific Variations in GET-Passives: Comparing Written and Spoken English. I am now beginning my Ph.D. at GNU, with a focus on phonetics, phonology, and the integration of digital tools into English education. With a passion for learning and teaching English effectively, I strive to contribute to the advancement of digital literacy and innovative teaching practices in education. I look forward to collaborating with others who share these interests!")
