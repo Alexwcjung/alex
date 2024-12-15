@@ -71,7 +71,7 @@ def check_answer(user_classification, user_forms):
     return feedback, f"Score: {st.session_state.score}/{st.session_state.trials}"
 
 # Streamlit interface
-st.title("🌱VerbMaster: Verb Tense Checking")
+st.title("🍇VerbMaster: Verb Tense Checking")
 st.markdown("""
 1. Click the 'Show the Verb' button.
 2. Choose regular/irregular.
