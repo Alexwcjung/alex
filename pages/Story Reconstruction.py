@@ -23,40 +23,45 @@ story_images = [
     "https://raw.githubusercontent.com/Alexwcjung/24-final-project/main/image6.jpeg"
 ]
 
-
 # Define the correct order for the images
 correct_order = [4, 5, 3, 1, 2]
 
 # Rearrange the story pairs according to the correct order
-ordered_story_pairs = [ (story_texts[i-1], story_images[i-1]) for i in correct_order ]
+ordered_story_pairs = [(story_texts[i - 1], story_images[i - 1]) for i in correct_order]
+
 
 # Function to check the order of the images
 def check_order(order):
     if order == "45312":
-        return "Congratulations! You got the correct order."
+        return "🎉 Congratulations! You got the correct order. 🎉"
     else:
-        return "Try again. The order is not correct."
+        return "❌ Try again. The order is not correct."
 
-order_input = gr.Textbox(label="Enter the order of images (e.g., 31243)")
+# Gradio Interface
+def create_interface():
+    with gr.Blocks() as demo:
+        gr.Markdown("# 🌍 Story Reconstruction Activity")
+        gr.Markdown("Listen to the story and place the images in the correct order!")
 
-# Define the Gradio Interface
-order_iface = gr.Interface(
-    fn=check_order,
-    inputs=order_input,
-    outputs="text",
-    description="Image Order Activity"
-)
+        # Display the audio file
+        gr.Audio(audio_url, autoplay=False)
 
-with gr.Blocks() as demo:
-    gr.Markdown("# Story Reconstruction Activity")
-    gr.Audio(audio_url)
+        # Display text-image pairs
+        for num, (txt, img) in enumerate(ordered_story_pairs, 1):
+            with gr.Row():
+                gr.Image(img, width=200, height=200)
+                gr.Markdown(f"**{num}.** {txt}")
 
-    gr.Markdown("## Place the images in order")
-    for num, (txt, img) in enumerate(ordered_story_pairs, 1):
-        gr.Markdown(f"**{num}**")
-        gr.Image(img, width=150, height=150)
-        gr.Markdown(txt)
+        # Input for order checking
+        gr.Markdown("### 🧩 Enter the order of images (e.g., `45312`)")
+        order_input = gr.Textbox(label="Image Order")
+        result = gr.Textbox(label="Feedback", interactive=False)
 
-    order_iface.render()
+        submit_btn = gr.Button("Check Order")
+        submit_btn.click(fn=check_order, inputs=order_input, outputs=result)
 
+    return demo
+
+# Launch the app
+demo = create_interface()
 demo.launch(share=True)
